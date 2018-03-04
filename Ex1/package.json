@@ -8,6 +8,7 @@
   },
   "scripts": {
     "start": "node server.js",
+    "dev": "nodemon server.js",
     "lint": "eslint **/*.js",
     "publishheroku": "cd ../ && git subtree push --prefix Ex1 heroku-ex1-app master || true"
   },
