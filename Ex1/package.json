@@ -1,0 +1,25 @@
+{
+  "name": "ex1",
+  "version": "1.0.0",
+  "description": "Exercise 1 - Mobile Application Development",
+  "main": "index.js",
+  "engines": {
+    "node": "8.9.4"
+  },
+  "scripts": {
+    "start": "nodemon server.js",
+    "lint": "eslint **/*.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "eslint": "^4.18.2",
+    "express": "^4.16.2"
+  },
+  "devDependencies": {
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.9.0",
+    "nodemon": "^1.17.1"
+  }
+}
