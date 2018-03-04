@@ -8,7 +8,8 @@
   },
   "scripts": {
     "start": "nodemon server.js",
-    "lint": "eslint **/*.js"
+    "lint": "eslint **/*.js",
+    "publishheroku": "cd ../ && git subtree push --prefix Ex1 heroku-ex1-app master || true"
   },
   "author": "",
   "license": "ISC",
