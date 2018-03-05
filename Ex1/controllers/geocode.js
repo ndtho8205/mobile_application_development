@@ -51,12 +51,14 @@ const getAddressByLatLng = (req, res) => {
         }
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.message);
         return res.json({
           status: 'FAIL',
           error_message:
-            (err.message && err.message) ||
-            'The request could not be processed due to a server error. The request may succeed if you try again.',
+            err.response.status === 400
+              ? 'Can not find any result.'
+              : (err.message && err.message) ||
+                'The request could not be processed due to a server error. The request may succeed if you try again.',
         });
       });
   } catch (err) {
