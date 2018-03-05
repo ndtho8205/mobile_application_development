@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Exercises 1 - Mobile Application Development</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  </head>
+  <body>
+
+    <div id="app">
+      <h1>Exercise 1</h1>
+      <h2>Mobile Application Development</h2>
+      <hr />
+
+      <h3>Part 1</h3> 
+      <form @submit.prevent @submit="checkPart1Form">
+        <p v-if="part1Errors.length">
+          <b>Please correct the following error(s):</b>
+          <ul>
+            <li v-for="error in part1Errors">{{ error }}</li>
+          </ul>
+        </p>
+        <div class="form-group">
+          <label for="part1-lat">Latitude:</label>
+          <input type="text" class="form-control" id="part1-lat" placeholder="10.881784" v-model="part1.lat"/>
+        </div>
+        <div class="form-group">
+          <label for="part1-lng">Longtitude:</label>
+          <input type="" class="form-control" id="part1-lng" placeholder="10.881784" v-model="part1.lng"/>
+        </div>
+
+        <button type="submit" class="btn btn-primary" @click="getAddressByLatLng">Submit</button>
+      </form>
+      <div class="result">
+        <div v-if="part1.address">
+          <p>Result:</p>
+          <p>Address: {{ part1.address }}</p>
+          <p>Latitude: {{ part1.lat }}</p>
+          <p>Longtitude: {{part1.lng }}</p>
+        </div>
+      </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          part1Errors: [],
+          part1: {
+            address: null,
+            lat: null,
+            lng: null,
+          },
+        },
+        methods: {
+          checkPart1Form() {
+            if (this.part1.lat && this.part1.lng) return true;
+            this.part1Errors = [];
+            if (!this.part1.lat || !this.part1.lng) 
+              this.part1Errors.push('Lat and Lng required.');
+            if (!isNaN(this.part1.lat) && !isNaN(parseFloat(this.part1.lat)))
+              this.part1Errors.push('Lat must be a number');
+          },
+          getAddressByLatLng() {
+            this.part1 = {
+              address: 'hello',
+            }
+          },
+
+        }
+
+      })
+    </script>
+  </body>
+</html>
