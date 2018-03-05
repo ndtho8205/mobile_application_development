@@ -55,7 +55,7 @@ const getAddressByLatLng = (req, res) => {
         return res.json({
           status: 'FAIL',
           error_message:
-            err.response.status === 400
+            err.response && err.response.status && err.response.status === 400
               ? 'Can not find any result.'
               : (err.message && err.message) ||
                 'The request could not be processed due to a server error. The request may succeed if you try again.',
