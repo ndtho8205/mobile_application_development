@@ -6,6 +6,8 @@ const port = process.env.PORT || 3000;
 
 app.use(cors());
 
+app.use(express.static('public'));
+
 app.use('/', require('./routes/index'));
 app.use('/api', require('./routes/api'));
 
