@@ -4,6 +4,7 @@ const isValidLocation = location =>
   !(location.length !== 2 || Number.isNaN(location[0]) || Number.isNaN(location[1]));
 
 const getDistanceByLatLng = (req, res) => {
+  console.log(`Request: ${req.url}`);
   try {
     if (!req.query || (req.query && !req.query.orig && !req.query.dest)) {
       throw new Error('Invalid orig/dest input.');
@@ -27,6 +28,7 @@ const getDistanceByLatLng = (req, res) => {
       status: 'OK',
     });
   } catch (err) {
+    console.log(err.message);
     return res.json({
       status: 'FAIL',
       error_message: err.message,

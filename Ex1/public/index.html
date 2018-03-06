@@ -1,162 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <title>Exercises 1 - Mobile Application Development</title>
+<head>
+  <meta charset="UTF-8">
+  <title>Exercises 1 - Mobile Application Development</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
 
-  </head>
+</head>
 
-  <body>
+<body>
 
-    <div id="app" class="container">
+  <div id="app" class="container py-3">
+    <div class="border-bottom border-primary mb-4">
       <h1>Exercise 1</h1>
       <h2>Mobile Application Development</h2>
-      <hr />
-
-      <div>
-        <h3>Part 1</h3>
-        <form @submit.prevent="getAddressByLatLng">
-          <div class="form-group form-row">
-            <div class="col">
-              <input type="text" class="form-control" placeholder="Latitude" v-model="part1.lat" />
-            </div>
-            <div class="col">
-              <input type="text" class="form-control" placeholder="Longitude" v-model="part1.lng" />
-            </div>
-          </div>
-
-          <button type="submit" class="btn btn-primary">FIND ADDRESS</button>
-        </form>
-
-        <div class="progress mt-3" v-if="part1.progress !== 0">
-          <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" :aria-valuenow="part1.progress" aria-valuemin="0" aria-valuemax="100" :style="{width: part1.progress + '%'}"></div>
-        </div>
-
-        <div class="mt-4 p-3 border border-secondary rounded bg-light" v-if="part1.address">
-          <p>Address: <span class="text-info">{{ part1.address }}</span></p>
-          <p>Latitude: <span class="text-info">{{ part1.lat }}</span></p>
-          <p>Longtitude: <span class="text-info">{{ part1.lng }}</span></p>
-        </div>
-      </div>
-
-      <hr class="mt-5 mb-5" />
-
-      <div>
-        <h3>Part 2</h3>
-        <form @submit.prevent="getDistanceByLatLng">
-
-          <label>Original:</label>
-          <div class="form-group form-row">
-            <div class="col">
-              <input type="text" class="form-control" placeholder="Latitude" v-model="part2.orig.lat" />
-            </div>
-            <div class="col">
-              <input type="text" class="form-control" placeholder="Longitude" v-model="part2.orig.lng" />
-            </div>
-          </div>
-
-          <label>Destination:</label>
-          <div class="form-group form-row">
-            <div class="col">
-              <input type="text" class="form-control" placeholder="Latitude" v-model="part2.dest.lat" />
-            </div>
-            <div class="col">
-              <input type="text" class="form-control" placeholder="Longitude" v-model="part2.dest.lng"/>
-            </div>
-          </div>
-
-          <button type="submit" class="btn btn-primary">FIND DISTANCE</button>
-        </form>
-
-        <div class="progress mt-3" v-if="part2.progress !== 0">
-          <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" :aria-valuenow="part2.progress" aria-valuemin="0" aria-valuemax="100" :style="{width: part2.progress + '%'}"></div>
-        </div>
-
-        <div class="mt-4 p-3 border border-secondary rounded bg-light" v-if="part2.distance !== null">
-          <p>Distance: <span class="text-info">{{ part2.distance }}</span></p>
-        </div>
-      </div>
-
+      <p class="my-3 text-secondary">Student: Nguyễn Đức Thọ - 1413817</p>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <div>
+      <h3>Part 1</h3>
+      <form @submit.prevent="getAddressByLatLng">
+        <div class="form-group form-row">
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Latitude" v-model="part1.lat" />
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Longitude" v-model="part1.lng" />
+          </div>
+        </div>
 
-    <script>
-      //const API_URL = 'https://ex1-mobile-app.herokuapp.com/api';
-const API_URL = `${window.location.protocol}//${window.location.host}/api`;
+        <button type="submit" class="btn btn-primary">FIND ADDRESS</button>
+      </form>
 
-const request = axios.create({
-  timeout: 100000,
-});
+      <div class="progress mt-3" v-if="part1.progress !== 0">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" :aria-valuenow="part1.progress"
+          aria-valuemin="0" aria-valuemax="100" :style="{width: part1.progress + '%'}"></div>
+      </div>
 
-const app = new Vue({
-  el: '#app',
-  data: {
-    part1: {
-      address: null,
-      lat: null,
-      lng: null,
-      progress: 0,
-    },
-    part2: {
-      orig: {
-        lat: null,
-        lng: null,
+      <div class="mt-4 p-3 border border-secondary rounded bg-light" v-if="Object.keys(part1.result).length">
+        <p>Address:
+          <span class="text-info">{{ part1.result.address }}</span>
+        </p>
+        <p>Latitude:
+          <span class="text-info">{{ part1.result.lat }}</span>
+        </p>
+        <p>Longtitude:
+          <span class="text-info">{{ part1.result.lng }}</span>
+        </p>
+      </div>
+    </div>
+
+    <hr class="mt-5 mb-5" />
+
+    <div>
+      <h3>Part 2</h3>
+      <form @submit.prevent="getDistanceByLatLng">
+
+        <label>Original:</label>
+        <div class="form-group form-row">
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Latitude" v-model="part2.orig.lat" />
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Longitude" v-model="part2.orig.lng" />
+          </div>
+        </div>
+
+        <label>Destination:</label>
+        <div class="form-group form-row">
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Latitude" v-model="part2.dest.lat" />
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Longitude" v-model="part2.dest.lng" />
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">FIND DISTANCE</button>
+      </form>
+
+      <div class="progress mt-3" v-if="part2.progress !== 0">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" :aria-valuenow="part2.progress"
+          aria-valuemin="0" aria-valuemax="100" :style="{width: part2.progress + '%'}"></div>
+      </div>
+
+      <div class="mt-4 p-3 border border-secondary rounded bg-light" v-if="Object.keys(part2.result).length">
+        <p>Distance:
+          <span class="text-info">{{ part2.result.distance }}</span>
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <script>
+    //const API_URL = 'https://ex1-mobile-app.herokuapp.com/api';
+    const API_URL = `${window.location.protocol}//${window.location.host}/api`;
+
+    const request = axios.create({
+      timeout: 100000,
+    });
+
+    const app = new Vue({
+      el: '#app',
+      data: {
+        part1: {
+          lat: null,
+          lng: null,
+          result: {},
+          progress: 0,
+        },
+        part2: {
+          orig: {
+            lat: null,
+            lng: null,
+          },
+          dest: {
+            lat: null,
+            lng: null,
+          },
+          result: {},
+          progress: 0,
+        },
       },
-      dest: {
-        lat: null,
-        lng: null,
+      methods: {
+        getAddressByLatLng() {
+          this.part1.progress = 25;
+          console.log('Getting...');
+          request.get(`${API_URL}/geocode?latlng=${this.part1.lat},${this.part1.lng}`)
+            .then((res) => {
+              this.part1.progress = 75;
+              if (res.data.status !== 'OK')
+                throw new Error(res.data.error_message);
+              this.part1.result = res.data.result;
+            }).catch((err) => {
+              console.log(err);
+              this.part1.result = {};
+              alert(err.message);
+            }).then(() => {
+              this.part1.progress = 0;
+            });
+        },
+
+        getDistanceByLatLng() {
+          this.part2.progress = 25;
+          console.log('Getting...');
+          request.get(
+            `${API_URL}/distance?orig=${this.part2.orig.lat},${this.part2.orig.lng}&dest=${this.part2.dest.lat},${this.part2.dest.lng}`
+          ).then((res) => {
+            this.part2.progress = 75;
+            if (res.data.status !== 'OK') throw new Error(res.data.error_message);
+            this.part2.result = res.data.result;
+          }).catch((err) => {
+            console.log(err);
+            this.part2.result = {};
+            alert(err.message);
+          }).then(() => {
+            this.part2.progress = 0;
+          });
+        },
       },
-      distance: null,
-      progress: 0,
-    },
-  },
-  methods: {
-    getAddressByLatLng() {
-      this.part1.progress = 25;
-      console.log('Getting...');
-      request.get(`${API_URL}/geocode?latlng=${this.part1.lat},${this.part1.lng}`).then((res) => {
-        this.part1.progress = 75;
-        if (res.data.status !== 'OK')
-          throw new Error(res.data.error_message);
-        result = res.data.result;
-        this.part1.address = result.address;
-        this.part1.lat = result.lat;
-        this.part1.lng = result.lng;
-      }).catch((err) => {
-        console.log(err);
-        this.part1.address = null;
-        alert(err.message);
-      }).then(() => {
-        this.part1.progress = 0;
-      });
-    },
+    });
 
-    getDistanceByLatLng() {
-      this.part2.progress = 25;
-      console.log('Getting...');
-      request.get(
-        `${API_URL}/distance?orig=${this.part2.orig.lat},${this.part2.orig.lng}&dest=${this.part2.dest.lat},${this.part2.dest.lng}`
-      ).then((res) => {
-        this.part2.progress = 75;
-        if (res.data.status !== 'OK') throw new Error(res.data.error_message);
-        result = res.data.result;
-        this.part2.distance = result.distance;
-      }).catch((err) => {
-        console.log(err);
-        alert(err.message);
-      }).then(() => {
-        this.part2.progress = 0;
-      });
-    },
-  },
-});
-
-    </script>
-  </body>
+  </script>
+</body>
 
 </html>
