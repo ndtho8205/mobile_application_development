@@ -1,8 +1,8 @@
 Arguments: 
-  /usr/bin/node /usr/share/yarn/bin/yarn.js publishheroku
+  /usr/bin/node /usr/share/yarn/bin/yarn.js dev
 
 PATH: 
-  /home/ndtho8205/.npm-global/bin:/home/ndtho8205/.rbenv/plugins/ruby-build/bin:/home/ndtho8205/.rbenv/shims:/home/ndtho8205/.rbenv/bin:/home/ndtho8205/.pyenv/plugins/pyenv-virtualenv/shims:/home/ndtho8205/.pyenv/shims:/home/ndtho8205/.pyenv/bin:/home/ndtho8205/.npm-global/bin:/home/ndtho8205/.rbenv/plugins/ruby-build/bin:/home/ndtho8205/.rbenv/shims:/home/ndtho8205/.rbenv/bin:/home/ndtho8205/.pyenv/plugins/pyenv-virtualenv/shims:/home/ndtho8205/.pyenv/shims:/home/ndtho8205/.pyenv/bin:/home/ndtho8205/bin:/home/ndtho8205/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin:/opt/android-sdk:/opt/android-sdk/tools:/opt/android-sdk/platform-tools:/opt/android-sdk/tools/bin:/home/ndtho8205/gocode/bin:/opt/go/bin:/opt/android-sdk:/opt/android-sdk/tools:/opt/android-sdk/platform-tools:/opt/android-sdk/tools/bin:/home/ndtho8205/gocode/bin:/opt/go/bin
+  /home/ndtho/.npm-global/bin:/home/ndtho/.pyenv/plugins/pyenv-virtualenv/shims:/home/ndtho/.pyenv/shims:/home/ndtho/.pyenv/bin:/home/ndtho/.npm-global/bin:/home/ndtho/.pyenv/plugins/pyenv-virtualenv/shims:/home/ndtho/.pyenv/shims:/home/ndtho/.pyenv/bin:/home/ndtho/bin:/home/ndtho/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin:/opt/android-sdk:/opt/android-sdk/tools:/opt/android-sdk/platform-tools:/opt/android-sdk/tools/bin:/opt/android-sdk:/opt/android-sdk/tools:/opt/android-sdk/platform-tools:/opt/android-sdk/tools/bin
 
 Yarn version: 
   1.5.1
@@ -23,7 +23,7 @@ Lockfile:
   No lockfile
 
 Trace: 
-  Error: Couldn't find a package.json file in "/home/ndtho8205/Documents/Projects/mobile_application_development"
+  Error: Couldn't find a package.json file in "/home/ndtho/Documents/Projects/mobile_application_development"
       at new MessageError (/usr/share/yarn/lib/cli.js:186:110)
       at /usr/share/yarn/lib/cli.js:40048:15
       at Generator.next (<anonymous>)
