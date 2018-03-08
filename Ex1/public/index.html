@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Exercises 1 - Mobile Application Development</title>
+  <title>Exercise 1 - Mobile Application Development</title>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
     crossorigin="anonymous">
@@ -46,7 +46,7 @@
         <p>Latitude:
           <span class="text-info">{{ part1.result.lat }}</span>
         </p>
-        <p>Longtitude:
+        <p>Longitude:
           <span class="text-info">{{ part1.result.lng }}</span>
         </p>
       </div>
@@ -78,7 +78,7 @@
           </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">FIND DISTANCE</button>
+        <button type="submit" class="btn btn-primary">COMPUTE DISTANCE</button>
       </form>
 
       <div class="progress mt-3" v-if="part2.progress !== 0">
@@ -88,7 +88,7 @@
 
       <div class="mt-4 p-3 border border-secondary rounded bg-light" v-if="Object.keys(part2.result).length">
         <p>Distance:
-          <span class="text-info">{{ part2.result.distance }}</span>
+          <span class="text-info">{{ part2.result.distance }} km</span>
         </p>
       </div>
     </div>

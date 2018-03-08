@@ -2,7 +2,12 @@
 
 On Heroku: https://ex1-mobile-app.herokuapp.com/
 
-On localhost: `npm i && npm run start`
+On localhost: 
+
+```bash
+npm i && npm run start
+# enter localhost:3000
+```
 
 APIs:
 
