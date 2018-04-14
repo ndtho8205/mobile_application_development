@@ -1,4 +1,4 @@
-package edu.bk.thesis.myapplication
+package edu.bk.ndtho.currencyconverter
 
 import org.junit.Test
 

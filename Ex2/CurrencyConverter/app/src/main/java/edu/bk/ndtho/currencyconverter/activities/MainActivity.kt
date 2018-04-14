@@ -1,8 +1,8 @@
-package edu.bk.thesis.myapplication.activities
+package edu.bk.ndtho.currencyconverter.activities
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import edu.bk.thesis.myapplication.R
+import android.support.v7.app.AppCompatActivity
+import edu.bk.ndtho.currencyconverter.R
 
 class MainActivity : AppCompatActivity() {
 
