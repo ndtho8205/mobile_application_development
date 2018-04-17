@@ -1,18 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".activities.MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAppBackground"
+    tools:context=".activities.MainActivity">
 
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello World!"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/tvAppName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/app_name"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.1" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorAmountBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAppName">
+
+        <Button
+            android:id="@+id/btnBaseCurrencySelector"
+            style="@style/AppTheme.SelectCurrencyButton"
+            android:text="United States Dollar" />
+
+        <TextView
+            android:id="@+id/tvBaseCurrencyUnit"
+            style="@style/AppTheme.CurrencyUnitTextView"
+            android:layout_alignBaseline="@id/btnBaseCurrencySelector"
+            android:layout_toEndOf="@id/btnBaseCurrencySelector"
+            android:text="1 VND = 0.0000355696 EUR" />
+
+        <TextView
+            android:id="@+id/tvBaseCurrencySymbol"
+            style="@style/AppTheme.CurrencySymbolTextView"
+            android:layout_below="@id/btnBaseCurrencySelector"
+            android:text="Y" />
+
+        <EditText
+            android:id="@+id/etBaseCurrencyAmount"
+            style="@style/AppTheme.CurrencyAmountEditText"
+            android:layout_below="@id/btnBaseCurrencySelector"
+            android:layout_toEndOf="@id/tvBaseCurrencySymbol" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorAmountBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+
+        <Button
+            android:id="@+id/btnQuoteCurrencySelector"
+            style="@style/AppTheme.SelectCurrencyButton"
+            android:text="Vietnamese Dong" />
+
+        <TextView
+            android:id="@+id/tvQuoteCurrencyUnit"
+            style="@style/AppTheme.CurrencyUnitTextView"
+            android:layout_alignBaseline="@id/btnQuoteCurrencySelector"
+            android:layout_toEndOf="@id/btnQuoteCurrencySelector"
+            android:text="1 VND = 0.0000355696 EUR"
+            android:textAlignment="textEnd" />
+
+        <TextView
+            android:id="@+id/tvQuoteCurrencySymbol"
+            style="@style/AppTheme.CurrencySymbolTextView"
+            android:layout_below="@id/btnQuoteCurrencySelector"
+            android:text="VND" />
+
+        <EditText
+            android:id="@+id/etQuoteCurrencyAmount"
+            style="@style/AppTheme.CurrencyAmountEditText"
+            android:layout_below="@id/btnQuoteCurrencySelector"
+            android:layout_toEndOf="@id/tvQuoteCurrencySymbol"
+            android:singleLine="false" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2">
+
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

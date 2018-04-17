@@ -1,0 +1,53 @@
+{
+  "timestamp": 1523890800,
+  "currencies": [
+    {
+      "code": "GBP",
+      "symbol": "£",
+      "name": "British Pound",
+      "rate": 0.697898
+    },
+    {
+      "code": "CNY",
+      "symbol": "¥",
+      "name": "Chinese Yuan",
+      "rate": 6.27735
+    },
+    {
+      "code": "EUR",
+      "symbol": "€",
+      "name": "Euro",
+      "rate": 0.808599
+    },
+    {
+      "code": "JPY",
+      "symbol": "¥",
+      "name": "Japanese Yen",
+      "rate": 107.25525
+    },
+    {
+      "code": "KRW",
+      "symbol": "₩",
+      "name": "South Korean Won",
+      "rate": 1072.5
+    },
+    {
+      "code": "THB",
+      "symbol": "฿",
+      "name": "Thai Baht",
+      "rate": 31.203
+    },
+    {
+      "code": "USD",
+      "symbol": "$",
+      "name": "United States Dollar",
+      "rate": 1
+    },
+    {
+      "code": "VND",
+      "symbol": "đ",
+      "name": "Vietnamese Dong",
+      "rate": 22696.098673
+    }
+  ]
+}
