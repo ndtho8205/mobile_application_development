@@ -1,6 +1,10 @@
 package edu.bk.ndtho.currencyconverter.activities
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
@@ -16,8 +20,6 @@ import java.text.DecimalFormat
 
 class MainActivity : AppCompatActivity()
 {
-
-    private val mCurrencyDataHandler = CurrencyDataHandler()
     private lateinit var mCurrencyData: CurrencyData
 
     private var mBaseCurrencyIndex: Int = 0
@@ -31,10 +33,11 @@ class MainActivity : AppCompatActivity()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        mCurrencyData = mCurrencyDataHandler.loadFromJson(this, R.raw.currencies)
+        mCurrencyData = CurrencyDataHandler.loadFromJson(this, R.raw.currencies)
         mBaseCurrency = mCurrencyData.currencies[mBaseCurrencyIndex]
         mQuoteCurrency = mCurrencyData.currencies[mQuoteCurrencyIndex]
 
+        requestInternetPermission()
         initViews()
     }
 
@@ -44,6 +47,7 @@ class MainActivity : AppCompatActivity()
 
         initBaseCurrency()
         initQuoteCurrency()
+        initSyncInfo()
     }
 
     private fun initBaseCurrency()
@@ -75,6 +79,14 @@ class MainActivity : AppCompatActivity()
 
         etQuoteCurrencyAmount.onMoneyAmountChanged {
             etBaseCurrencyAmount.updateMoneyAmount(it, mQuoteCurrency, mBaseCurrency)
+        }
+    }
+
+    private fun initSyncInfo()
+    {
+        tvSyncInfo.setOnClickListener {
+            if (hasInternetPermission())
+                CurrencyDataHandler.sync()
         }
     }
 
@@ -152,5 +164,30 @@ class MainActivity : AppCompatActivity()
                     dialog.dismiss()
                 })
                 .show()
+    }
+
+    private fun hasInternetPermission(): Boolean = ContextCompat.checkSelfPermission(this,
+                                                                                     Manifest.permission.INTERNET) == PackageManager.PERMISSION_GRANTED
+
+
+    private fun requestInternetPermission()
+    {
+        ActivityCompat.requestPermissions(this,
+                                          arrayOf(Manifest.permission.INTERNET),
+                                          101)
+
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>,
+                                            grantResults: IntArray)
+    {
+        when (requestCode)
+        {
+            101  -> if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+            {
+                CurrencyDataHandler.sync()
+            }
+            else -> super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        }
     }
 }
