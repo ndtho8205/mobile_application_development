@@ -2,6 +2,6 @@
 
 Currency Converter
 
-![currency_converter](currency_converter.gif)
+![currency_converter](currency_converter.gif | width=480)
 
 
