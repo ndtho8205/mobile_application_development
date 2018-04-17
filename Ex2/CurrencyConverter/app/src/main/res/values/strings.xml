@@ -2,5 +2,6 @@
     <string name="app_name">Currency Converter</string>
 
     <string name="currencies_unit_info">1 %s = %f %s</string>
+    <string name="currencies_sync_info">Updated %d days ago. <u>Click here</u> to update.</string>
 
 </resources>
