@@ -85,8 +85,7 @@
             style="@style/AppTheme.CurrencyUnitTextView"
             android:layout_alignBaseline="@id/btnQuoteCurrencySelector"
             android:layout_toEndOf="@id/btnQuoteCurrencySelector"
-            android:text="1 VND = 0.0000355696 EUR"
-            android:textAlignment="textEnd" />
+            android:text="1 VND = 0.0000355696 EUR" />
 
         <TextView
             android:id="@+id/tvQuoteCurrencySymbol"
