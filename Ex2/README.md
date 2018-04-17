@@ -2,6 +2,5 @@
 
 Currency Converter
 
-![currency_converter](currency_converter.gif | width=480)
-
+<img src="./currency_converter.gif" width="480" />
 
