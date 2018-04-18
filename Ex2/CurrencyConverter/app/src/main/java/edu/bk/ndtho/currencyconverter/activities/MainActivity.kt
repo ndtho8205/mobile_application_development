@@ -1,6 +1,7 @@
 package edu.bk.ndtho.currencyconverter.activities
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
@@ -11,6 +12,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import edu.bk.ndtho.currencyconverter.R
 import edu.bk.ndtho.currencyconverter.models.Currency
 import edu.bk.ndtho.currencyconverter.models.CurrencyData
@@ -21,6 +23,13 @@ import java.text.DecimalFormat
 class MainActivity : AppCompatActivity()
 {
 
+    companion object
+    {
+
+        val FILENAME = "currencies_rate.json"
+
+    }
+
     private lateinit var mCurrencyData: CurrencyData
 
     private var mBaseCurrencyIndex: Int = 0
@@ -28,13 +37,25 @@ class MainActivity : AppCompatActivity()
     private lateinit var mBaseCurrency: Currency
     private lateinit var mQuoteCurrency: Currency
 
+    private val mCurrencyDataHandler = CurrencyDataHandler(this)
+
     override
     fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        mCurrencyData = CurrencyDataHandler.loadFromJson(this, R.raw.currencies)
+        intent?.let {
+            val data: String = if (it.hasExtra(Intent.EXTRA_TEXT))
+            {
+                it.getStringExtra(Intent.EXTRA_TEXT)
+            } else
+            {
+                mCurrencyDataHandler.readFromRawResource(R.raw.currencies)
+            }
+            mCurrencyData = CurrencyData.parse(data)
+        }
+
         mBaseCurrency = mCurrencyData.currencies[mBaseCurrencyIndex]
         mQuoteCurrency = mCurrencyData.currencies[mQuoteCurrencyIndex]
 
@@ -89,9 +110,18 @@ class MainActivity : AppCompatActivity()
         tvSyncInfo.setOnClickListener {
             if (hasInternetPermission())
             {
-                CurrencyDataHandler.sync(mCurrencyData)
-                CurrencyDataHandler.saveToFile(this, mCurrencyData, R.raw.currencies)
-                tvSyncInfo.updateSyncInfo()
+                showMessage("Updating...")
+                mCurrencyDataHandler.sync(mCurrencyData) {
+                    if (it)
+                    {
+                        mCurrencyDataHandler.saveToFile(FILENAME, mCurrencyData.toJsonString())
+                        tvSyncInfo.updateSyncInfo()
+                        showMessage("Updated :) Let's play!")
+                    } else
+                    {
+                        showMessage("Some error occurred, please try again :(")
+                    }
+                }
             } else
                 requestInternetPermission()
         }
@@ -141,9 +171,9 @@ class MainActivity : AppCompatActivity()
 
     private fun TextView.updateSyncInfo()
     {
-        val timestampNow = System.currentTimeMillis() / 1000
-        val daysOutdated = (timestampNow - mCurrencyData.timestamp) / 3600
-        this.text = getString(R.string.currencies_sync_info, mCurrencyData.timestamp)
+        val messageId =
+                if (mCurrencyData.outdated() == 0L) R.string.currencies_sync_info_latest else R.string.currencies_sync_info_outdated
+        this.text = getString(messageId, mCurrencyData.outdated())
     }
 
     private fun updateViewsWhenCurrencyChanged()
@@ -188,5 +218,10 @@ class MainActivity : AppCompatActivity()
                                           arrayOf(Manifest.permission.INTERNET),
                                           101)
 
+    }
+
+    private fun showMessage(message: String)
+    {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 }
