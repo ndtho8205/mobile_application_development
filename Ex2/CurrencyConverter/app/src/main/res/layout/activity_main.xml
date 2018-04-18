@@ -115,6 +115,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Updated 1 days ago. Click here to update."
+        android:textColor="@color/fg_text_view_sync_info"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
