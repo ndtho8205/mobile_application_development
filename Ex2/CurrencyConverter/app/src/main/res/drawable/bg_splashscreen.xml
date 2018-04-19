@@ -4,6 +4,6 @@
     <item>
         <bitmap
             android:gravity="center"
-            android:src="@drawable/ic_if_finance_currency_exchange_1889190" />
+            android:src="@drawable/ic_finance_currency" />
     </item>
 </layer-list>
