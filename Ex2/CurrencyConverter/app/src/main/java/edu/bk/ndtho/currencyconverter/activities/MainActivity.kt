@@ -115,6 +115,8 @@ class MainActivity : AppCompatActivity()
                     if (it)
                     {
                         mCurrencyDataHandler.saveToFile(FILENAME, mCurrencyData.toJsonString())
+
+                        updateViewsWhenCurrencyChanged()
                         tvSyncInfo.updateSyncInfo()
                         showMessage("Updated :) Let's play!")
                     } else
